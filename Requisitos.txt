@@ -1,0 +1,76 @@
+Objetivos:
+
+----UI----
+Menu de inicio;
+Menu de pausa;
+Menu de settings;
+Pantalla dividida;
+Menu de controles;
+Keymap modificable;
+Fuente propia;
+
+----Mecanicas----
+Fichas:
+	-Multiples formas;
+	-Caen cada x segs;
+	-Controlar su rotación;
+	-Al chocar pierde el control;
+	-Gravity;
+	-Puedes intercambiarla por la siguiente;
+
+Tablero:
+	-Limite de AxB;
+	-Limpiar las lineas completas;
+	-Pierdes 1 vida si toca el limite;
+	-Tienes 3 vidas;
+
+Puntuación:
+	-Cada x minutos de partida ganas puntos;
+	-Cada x puntos ganas puntos de habilidad;
+	-Ganas más puntos si eliminas en cadena;
+
+Habilidades(dependientes de personajes):
+	-Congelar el tiempo (salta una cantidad x
+	de gravity_cheks);
+
+	-Metamorfosis(le cambias tu pieza a tu 
+	rival);
+
+	-Cleanse (elimina las x filas empezando
+	por abajo, sin ganar puntos);
+
+	-Maestro de los vientos(Empuja la ficha
+	rival a uno de los laterales);
+
+	-Keybinding(Mueves tu ficha y la del rival
+	por x segundos/movimientos);
+
+	-SWITCH(Intercambias el tablero con tu 
+	rival);
+
+	-Flip(Lo dice el nombre le das la vuelta
+	ahora el tablero es de BxA);
+
+Pasivas(1 por jugador):
+
+	-Bolsillos grandes (puedes rotar entre 3
+	fichas);
+
+	-Vidas extras (Tienes 2 vidas extras);
+
+	-Famoso (Ganas .25 más puntuación);
+
+	-Tortuga (El otro jugador se mueve un x%
+	más rapido);
+
+Tiempo:
+	-Cada x segundos, la velocidad aumenta
+	hasta un maximo;
+	-Cada incremento de tiempo, otorga un
+	modificador a la puntuación;
+
+Victoria:
+	Si tienes más de 1000 puntos:
+		-Y le sacas un 35% más, entonces
+		le ganas;
+	Si tu oponente pierde todas sus vidas;
