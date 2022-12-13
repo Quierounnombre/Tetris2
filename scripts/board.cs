@@ -8,6 +8,7 @@ public class board : MonoBehaviour
 	public Tilemap tilemap;
 	public piece_generator gen;
 	private Tile tile;
+	public PlayerControls player;
 	private void Start() {
 		piece p = gen.generate();
 		Move_piece(p);
@@ -16,13 +17,15 @@ public class board : MonoBehaviour
 	
     public void Move_piece(piece piece)
     {
-		Vector3Int tilepos;
+		Vector2Int tilepos;
 
-        for (int i = 0; i < piece.cells.Length; i++)
+        for (int i = 0; i < piece.cells.Length; i++)	
         {
-			tilepos = piece.cells[i] + piece.position;
-            tilemap.SetTile(tilePosition, piece.data.tile);
+			tilepos = piece.cells[i] + player.pos;
+			Debug.Log((Vector3Int)tilepos);
+			tilemap.SetTile((Vector3Int)tilepos, piece.tile);
         }
+		Debug.Log("He terminado");
     }
 	
 }

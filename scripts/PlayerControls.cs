@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    public GameManager GameManager;
+    public GameManager 	GameManager;
+    public Vector2Int			pos;
+
+	private void Awake() 
+	{
+		pos = new Vector2Int(5, 10);
+	}
 
     void Update()
     {

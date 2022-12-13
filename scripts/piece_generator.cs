@@ -25,16 +25,25 @@ public struct piece
 
 public class piece_generator : MonoBehaviour 
 {
-	public Tilemap	tilemap_p1;
-	public Tilemap	tilemap_p2;
 	public piece[]	piece;
+
+	private void Awake()
+	{
+		int	i;
+
+		i = 0;
+		while (i != piece.Length)
+		{
+			piece[i].cells = data.cells[piece[i].shape];
+			i++;
+		}	
+	}
 
 	public piece generate()
 	{
 		piece r_piece;
 
 		r_piece = piece[Random.Range(0, piece.Length)];
-		r_piece.cells = data.cells[r_piece.shape];
 		return (r_piece);
 	}
 }
