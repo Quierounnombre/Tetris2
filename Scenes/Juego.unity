@@ -377,6 +377,7 @@ MonoBehaviour:
   tilemap: {fileID: 817311683}
   gen: {fileID: 86296201}
   player: {fileID: 263114683}
+  spawn_point: {x: 4, y: 18}
 --- !u!114 &263114683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +391,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1959293436}
+  board: {fileID: 263114682}
+  piece:
+    tile: {fileID: 0}
+    shape: 0
+    cells: []
   pos: {x: 0, y: 0}
+  timedelay: 1
 --- !u!156049354 &263114684
 Grid:
   m_ObjectHideFlags: 0
@@ -862,6 +869,7 @@ MonoBehaviour:
   tilemap: {fileID: 631259116}
   gen: {fileID: 86296201}
   player: {fileID: 709886460}
+  spawn_point: {x: 4, y: 18}
 --- !u!114 &709886460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,7 +883,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1959293436}
+  board: {fileID: 709886459}
+  piece:
+    tile: {fileID: 0}
+    shape: 0
+    cells: []
   pos: {x: 0, y: 0}
+  timedelay: 1
 --- !u!156049354 &709886461
 Grid:
   m_ObjectHideFlags: 0
