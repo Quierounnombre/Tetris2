@@ -13,6 +13,7 @@ public class PlayerControls : MonoBehaviour
 	private float		locktime;
 	public float 		timelock;
     public string		Dir_src;
+	public int			RotationIndex;
 
     void Update()
     {
@@ -66,4 +67,53 @@ public class PlayerControls : MonoBehaviour
 		board.Move_piece(piece);
 		locktime = Time.time + timelock;
 	}
+
+private void Rotate(int direction)
+    {
+        int originalRotation = rotationIndex;
+
+        rotationIndex = Wrap(rotationIndex + direction, 0, 4);
+        ApplyRotationMatrix(direction);
+        if (!TestWallKicks(rotationIndex, direction))
+        {
+            rotationIndex = originalRotation;
+            ApplyRotationMatrix(-direction);
+        }
+    }
+
+    private void ApplyRotationMatrix(int direction)
+    {
+        float[] matrix = piece.RotationMatrix;
+
+        for (int i = 0; i < piece.cells.Length; i++)
+        {
+            Vector3 cell = piece.cells[i];
+
+            int x, y;
+
+			if (piecei.shape == O)
+			{
+				cell.x -= 0.5f;
+				cell.y -= 0.5f;
+				x = Mathf.CeilToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
+				y = Mathf.CeilToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
+			}
+			if (piece.shape != T)
+			{
+				x = Mathf.RoundToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
+				y = Mathf.RoundToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
+            }
+            cells[i] = new Vector3Int(x, y, 0);
+        }
+    }
+
+
+    private int Wrap(int input, int min, int max)
+    {
+        if (input < min) {
+            return max - (min - input) % (max - min);
+        } else {
+            return min + (input - min) % (max - min);
+        }
+    }
 }

@@ -20,6 +20,9 @@ public struct piece
 	public Tile tile;
 	public shape shape;
 	public Vector2Int[] cells;
+	public static const float[] cos =  Mathf.Cos(Mathf.PI / 2f);
+	public static const float[] sin = Mathf.Sin(Mathf.PI / 2f);
+	public static const float[] RotationMatrix = new float[] {cos, sin, -sin, cos};
 }
 
 
