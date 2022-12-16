@@ -32,7 +32,37 @@ public class board : MonoBehaviour
 			tilemap.SetTile((Vector3Int)tilepos, null);
         }
 	}
+	
+	public bool IsValid(Vector2Int offset, piece piece)
+	{
+		Vector2Int	targetpos;
+		Vector2Int	cellpos;
 
+		targetpos = player.pos - offset;
+		for (int i = 0; i < piece.cells.Length; i++)
+		{
+			cellpos = piece.cells[i] + targetpos;
+			if (tilemap.GetTile((Vector3Int)cellpos) != null
+				&& check_for_previous(cellpos, piece))
+				return (false);
+			if (cellpos.x < 0 || cellpos.y > 20 || cellpos.y < 2 || cellpos.x > 10)
+				return (false);
+		}
+		return (true);
+	}
+
+	private bool check_for_previous(Vector2Int tile, piece piece)
+	{
+		Vector2Int	cellpos;
+
+		for (int i = 0; i < piece.cells.Length; i++)
+		{
+			cellpos = piece.cells[i] + player.pos;
+			if (cellpos == tile)
+				return (false);
+		}
+		return (true);
+	}
 	public void spawn_piece(piece piece)
 	{
 		Vector2Int tilepos;

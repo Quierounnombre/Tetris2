@@ -15,10 +15,20 @@ public class PlayerControls : MonoBehaviour
     void Update()
     {
 		if (Time.time >= deltatime)
-			Drop();
+		{
+			if (board.IsValid(new Vector2Int(0, -1), piece))
+				Drop();
+			else
+				new_piece();
+		}
     }
 
 	public void Awake()
+	{
+		new_piece();
+	}
+
+	public void new_piece()
 	{
 		piece = board.gen.generate();
 		deltatime = Time.time + timedelay;
