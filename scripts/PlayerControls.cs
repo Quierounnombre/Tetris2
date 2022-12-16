@@ -16,10 +16,14 @@ public class PlayerControls : MonoBehaviour
     {
 		if (Time.time >= deltatime)
 		{
+			board.clean_piece(piece);
 			if (board.IsValid(new Vector2Int(0, -1), piece))
 				Drop();
 			else
+			{
+				board.Move_piece(piece);
 				new_piece();
+			}
 		}
     }
 
@@ -38,8 +42,7 @@ public class PlayerControls : MonoBehaviour
 	public void Drop()
 	{
 		deltatime = Time.time + timedelay;
-		board.clean_piece(piece);
-		pos -= new Vector2Int(0, 1);
+		pos += new Vector2Int(0, -1);
 		board.Move_piece(piece);
     }
 }
