@@ -44,7 +44,7 @@ public class board : MonoBehaviour
 			cellpos = piece.cells[i] + targetpos;
 			if (tilemap.HasTile((Vector3Int)cellpos))
 				return (false);
-			if (cellpos.x < 0 || cellpos.y > 20 || cellpos.y < 0 || cellpos.x > 10)
+			if (cellpos.x < 0 || cellpos.y >= 20 || cellpos.y < 0 || cellpos.x >= 10)
 				return (false);
 		}
 		return (true);

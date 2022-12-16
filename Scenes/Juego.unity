@@ -398,6 +398,8 @@ MonoBehaviour:
     cells: []
   pos: {x: 0, y: 0}
   timedelay: 1
+  timelock: 0.05
+  Dir_src: Dir_P1
 --- !u!156049354 &263114684
 Grid:
   m_ObjectHideFlags: 0
@@ -890,6 +892,8 @@ MonoBehaviour:
     cells: []
   pos: {x: 0, y: 0}
   timedelay: 1
+  timelock: 0.05
+  Dir_src: Dir_P2
 --- !u!156049354 &709886461
 Grid:
   m_ObjectHideFlags: 0
