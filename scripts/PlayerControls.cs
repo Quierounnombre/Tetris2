@@ -13,6 +13,7 @@ public class PlayerControls : MonoBehaviour
 	private float		locktime;
 	public float 		timelock;
     public string		Dir_src;
+	public string		Rot_src;
 	public int			RotationIndex;
 
     void Update()
@@ -30,6 +31,8 @@ public class PlayerControls : MonoBehaviour
 		}
 		else if (Input.GetAxis(Dir_src) != 0 && Time.time >= locktime)
 			player_move();
+		else if (Input.GetAxis(Rot_src) != 0 && Time.time >= locktime)
+			Rotate(Wrap((int)Input.GetAxis(Rot_src), 0, 1));
     }
 
 	public void Awake()
@@ -70,15 +73,17 @@ public class PlayerControls : MonoBehaviour
 
 private void Rotate(int direction)
     {
-        int originalRotation = rotationIndex;
+        int originalRotation = RotationIndex;
 
-        rotationIndex = Wrap(rotationIndex + direction, 0, 4);
+		board.clean_piece(piece);
+		RotationIndex = Wrap(RotationIndex + direction, 0, 4);
         ApplyRotationMatrix(direction);
-        if (!TestWallKicks(rotationIndex, direction))
+        if (!TestWallKicks(RotationIndex, direction))
         {
-            rotationIndex = originalRotation;
-            ApplyRotationMatrix(-direction);
+			RotationIndex = originalRotation;
+			ApplyRotationMatrix(-direction);
         }
+		board.Move_piece(piece);
     }
 
     private void ApplyRotationMatrix(int direction)
@@ -87,26 +92,49 @@ private void Rotate(int direction)
 
         for (int i = 0; i < piece.cells.Length; i++)
         {
-            Vector3 cell = piece.cells[i];
+            Vector3 cell = (Vector3)(Vector3Int)piece.cells[i];
 
-            int x, y;
+            int x = 0, y = 0;
 
-			if (piecei.shape == O)
+			if (piece.shape == shape.O)
 			{
 				cell.x -= 0.5f;
 				cell.y -= 0.5f;
 				x = Mathf.CeilToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
 				y = Mathf.CeilToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
 			}
-			if (piece.shape != T)
+			if (piece.shape != shape.I)
 			{
 				x = Mathf.RoundToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
 				y = Mathf.RoundToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
             }
-            cells[i] = new Vector3Int(x, y, 0);
+            piece.cells[i] = new Vector2Int(x, y);
         }
     }
 
+	public bool TestWallKicks(int RotationIndex, int RotationDirection)
+	{
+		int WallIndex = GetWallIndex(RotationIndex, RotationDirection);
+
+		for (int i = 0; i < piece.wallkicks.GetLength(1); i++)
+		{
+			Vector2Int translation = piece.wallkicks[WallIndex, i];
+			if (board.IsValid(translation, piece))
+				return (true);
+		}
+		return (false);
+	}
+
+	private int GetWallIndex(int rotationIndex, int rotationDirection)
+    {
+        int wallKickIndex = rotationIndex * 2;
+
+        if (rotationDirection < 0) {
+            wallKickIndex--;
+        }
+
+        return Wrap(wallKickIndex, 0, piece.wallkicks.GetLength(0));
+    }
 
     private int Wrap(int input, int min, int max)
     {

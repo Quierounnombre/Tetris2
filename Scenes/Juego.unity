@@ -400,6 +400,8 @@ MonoBehaviour:
   timedelay: 1
   timelock: 0.05
   Dir_src: Dir_P1
+  Rot_src: Rot_P1
+  RotationIndex: 0
 --- !u!156049354 &263114684
 Grid:
   m_ObjectHideFlags: 0
@@ -894,6 +896,8 @@ MonoBehaviour:
   timedelay: 1
   timelock: 0.05
   Dir_src: Dir_P2
+  Rot_src: Rot_P2
+  RotationIndex: 0
 --- !u!156049354 &709886461
 Grid:
   m_ObjectHideFlags: 0
