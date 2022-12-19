@@ -21,11 +21,7 @@ public struct piece
 	public shape shape;
 	public Vector2Int[] cells;
 	public Vector2Int[,] wallkicks;
-	public static readonly float cos =  Mathf.Cos(Mathf.PI / 2f);
-	public static readonly float sin = Mathf.Sin(Mathf.PI / 2f);
-	public static readonly float[] RotationMatrix = new float[] {cos, sin, -sin, cos};
-
-	
+	public float[] RotationMatrix;
 }
 
 
@@ -35,15 +31,20 @@ public class piece_generator : MonoBehaviour
 
 	private void Awake()
 	{
-		int	i;
+		int		i;
+		float	cos;
+		float	sin;		
 
+		cos = Mathf.Cos(Mathf.PI / 2f);
+		sin = Mathf.Sin(Mathf.PI / 2f);
 		i = 0;
-		while (i != piece.Length)
+		while (i < piece.Length)
 		{
 			piece[i].cells = data.cells[piece[i].shape];
+			piece[i].RotationMatrix = new float[] {cos, sin, -sin, cos};
 			piece[i].wallkicks = data.WallKicks[piece[i].shape];
 			i++;
-		}	
+		}
 	}
 
 	public piece generate()

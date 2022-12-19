@@ -126,7 +126,7 @@ private void Rotate(int direction)
 	}
 
 	private int GetWallIndex(int rotationIndex, int rotationDirection)
-    {
+	{
         int wallKickIndex = rotationIndex * 2;
 
         if (rotationDirection < 0) {
