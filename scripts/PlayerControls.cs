@@ -32,7 +32,12 @@ public class PlayerControls : MonoBehaviour
 		else if (Input.GetAxis(Dir_src) != 0 && Time.time >= locktime)
 			player_move();
 		else if (Input.GetAxis(Rot_src) != 0 && Time.time >= locktime)
-			Rotate(Wrap((int)Input.GetAxis(Rot_src), 0, 1));
+		{
+			if (Input.GetAxis(Rot_src) > 0)
+				Rotate(1);
+			else
+				Rotate(-1);
+		}
     }
 
 	public void Awake()
@@ -86,31 +91,32 @@ private void Rotate(int direction)
 		board.Move_piece(piece);
     }
 
-    private void ApplyRotationMatrix(int direction)
-    {
-        float[] matrix = piece.RotationMatrix;
+	private void ApplyRotationMatrix(int direction)
+	{
+		float[] matrix = piece.RotationMatrix;
 
-        for (int i = 0; i < piece.cells.Length; i++)
-        {
-            Vector3 cell = (Vector3)(Vector3Int)piece.cells[i];
+		for (int i = 0; i < piece.cells.Length; i++)
+		{
+			Vector3 cell = (Vector3)(Vector3Int)piece.cells[i];
 
-            int x = 0, y = 0;
-
-			if (piece.shape == shape.O)
-			{
-				cell.x -= 0.5f;
-				cell.y -= 0.5f;
-				x = Mathf.CeilToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
-				y = Mathf.CeilToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
-			}
-			if (piece.shape != shape.I)
-			{
-				x = Mathf.RoundToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
-				y = Mathf.RoundToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
+			int x, y;
+            switch (piece.shape)
+            {
+                case shape.I:
+                case shape.O:
+                    cell.x -= 0.5f;
+                    cell.y -= 0.5f;
+                    x = Mathf.CeilToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
+                    y = Mathf.CeilToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
+                    break;
+                default:
+                    x = Mathf.RoundToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
+                    y = Mathf.RoundToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
+                    break;
             }
-            piece.cells[i] = new Vector2Int(x, y);
-        }
-    }
+			piece.cells[i] = new Vector2Int(x, y);
+		}
+	}
 
 	public bool TestWallKicks(int RotationIndex, int RotationDirection)
 	{
@@ -138,9 +144,12 @@ private void Rotate(int direction)
 
     private int Wrap(int input, int min, int max)
     {
-        if (input < min) {
+        if (input < min)
+		{
             return max - (min - input) % (max - min);
-        } else {
+        }
+		else
+		{
             return min + (input - min) % (max - min);
         }
     }

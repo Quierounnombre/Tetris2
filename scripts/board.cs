@@ -62,6 +62,5 @@ public class board : MonoBehaviour
 		}
 		player.pos = spawn_point;
 		Move_piece(piece);
-	}
-	
+	}	
 }
