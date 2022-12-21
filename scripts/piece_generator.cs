@@ -49,9 +49,15 @@ public class piece_generator : MonoBehaviour
 
 	public piece generate()
 	{
-		piece r_piece;
+		piece	r_piece;
+		piece	n_piece;
 
 		r_piece = piece[Random.Range(0, piece.Length)];
-		return (r_piece);
+		n_piece.shape = r_piece.shape;
+		n_piece.RotationMatrix = r_piece.RotationMatrix;
+		n_piece.tile = r_piece.tile;
+		n_piece.cells = (Vector2Int[])r_piece.cells.Clone();
+		n_piece.wallkicks = r_piece.wallkicks;
+		return (n_piece);
 	}
 }
