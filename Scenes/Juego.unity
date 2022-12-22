@@ -156,24 +156,31 @@ MonoBehaviour:
   - tile: {fileID: 11400000, guid: 5af5e2d996ddf074da54e661431955d5, type: 2}
     shape: 0
     cells: []
+    RotationMatrix: []
   - tile: {fileID: 11400000, guid: 2897c3f0bd223e645ac5c9728850fc28, type: 2}
     shape: 1
     cells: []
+    RotationMatrix: []
   - tile: {fileID: 11400000, guid: b356ae6267dab974fad1ea16f97ed662, type: 2}
     shape: 2
     cells: []
+    RotationMatrix: []
   - tile: {fileID: 11400000, guid: 4ae4c7cb66bbff24db765758e2ca5525, type: 2}
     shape: 3
     cells: []
+    RotationMatrix: []
   - tile: {fileID: 11400000, guid: bbe3ca0868296694d957a4cbf63295cc, type: 2}
     shape: 4
     cells: []
+    RotationMatrix: []
   - tile: {fileID: 11400000, guid: 1494ae46f192cf745b51badebce60c6c, type: 2}
     shape: 5
     cells: []
+    RotationMatrix: []
   - tile: {fileID: 11400000, guid: 54890366a9998aa48ae691a74617a280, type: 2}
     shape: 6
     cells: []
+    RotationMatrix: []
 --- !u!4 &86296202
 Transform:
   m_ObjectHideFlags: 0
@@ -396,8 +403,10 @@ MonoBehaviour:
     tile: {fileID: 0}
     shape: 0
     cells: []
+    RotationMatrix: []
   pos: {x: 0, y: 0}
   timedelay: 1
+  rot_delay: 0.1
   timelock: 0.05
   Dir_src: Dir_P1
   Rot_src: Rot_P1
@@ -892,8 +901,10 @@ MonoBehaviour:
     tile: {fileID: 0}
     shape: 0
     cells: []
+    RotationMatrix: []
   pos: {x: 0, y: 0}
   timedelay: 1
+  rot_delay: 0.1
   timelock: 0.05
   Dir_src: Dir_P2
   Rot_src: Rot_P2

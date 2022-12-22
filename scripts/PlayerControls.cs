@@ -9,8 +9,10 @@ public class PlayerControls : MonoBehaviour
 	public piece		piece;
     public Vector2Int	pos;
     public float        timedelay;
+	public float		rot_delay;
     private float       deltatime;
 	private float		locktime;
+	private float		rot_locktime;
 	public float 		timelock;
     public string		Dir_src;
 	public string		Rot_src;
@@ -18,6 +20,16 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
+		if (Input.GetAxis(Dir_src) != 0 && Time.time >= locktime)
+			player_move();
+		else if (Input.GetAxis(Rot_src) != 0 && Time.time >= locktime && Time.time >= rot_locktime)
+		{
+			if (Input.GetAxis(Rot_src) > 0)
+				Rotate(1);
+			else
+				Rotate(-1);
+			rot_locktime = Time.time + rot_delay;
+		}
 		if (Time.time >= deltatime)
 		{
 			board.clean_piece(piece);
@@ -28,15 +40,6 @@ public class PlayerControls : MonoBehaviour
 				board.Move_piece(piece);
 				new_piece();
 			}
-		}
-		else if (Input.GetAxis(Dir_src) != 0 && Time.time >= locktime)
-			player_move();
-		else if (Input.GetAxis(Rot_src) != 0 && Time.time >= locktime)
-		{
-			if (Input.GetAxis(Rot_src) > 0)
-				Rotate(1);
-			else
-				Rotate(-1);
 		}
     }
 
@@ -82,9 +85,9 @@ private void Rotate(int direction)
 
 		board.clean_piece(piece);
 		RotationIndex = Wrap(RotationIndex + direction, 0, 4);
-        ApplyRotationMatrix(direction);
-        if (!TestWallKicks(RotationIndex, direction))
-        {
+		ApplyRotationMatrix(direction);
+		if (!TestWallKicks(RotationIndex, direction))
+		{
 			RotationIndex = originalRotation;
 			ApplyRotationMatrix(-direction);
         }
