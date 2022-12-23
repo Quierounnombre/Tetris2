@@ -405,7 +405,7 @@ MonoBehaviour:
     cells: []
     RotationMatrix: []
   pos: {x: 0, y: 0}
-  timedelay: 1
+  timedelay: 0.5
   rot_delay: 0.1
   timelock: 0.05
   Dir_src: Dir_P1
@@ -903,7 +903,7 @@ MonoBehaviour:
     cells: []
     RotationMatrix: []
   pos: {x: 0, y: 0}
-  timedelay: 1
+  timedelay: 0.5
   rot_delay: 0.1
   timelock: 0.05
   Dir_src: Dir_P2

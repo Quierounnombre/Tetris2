@@ -128,10 +128,10 @@ private void Rotate(int direction)
 		for (int i = 0; i < piece.wallkicks.GetLength(1); i++)
 		{
 			Vector2Int translation = piece.wallkicks[WallIndex, i];
-			if (board.IsValid(translation, piece))
-				return (true);
+			if (!board.IsValid(translation, piece))
+				return (false);
 		}
-		return (false);
+		return (true);
 	}
 
 	private int GetWallIndex(int rotationIndex, int rotationDirection)

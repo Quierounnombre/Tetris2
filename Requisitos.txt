@@ -9,6 +9,10 @@ Menu de controles;
 Keymap modificable;
 Fuente propia;
 
+A TOMAR POR CULO TODO, TE Intercambias CON EL OTRO JUGADOR LOS CAMPOS, GANA EL QUE LOGRE HACER PERDER AL OTRO O GANE X cantidadDA de puntos
+
+WALLHOCKS - EL COMPORTAMIENTO DE QUE SE QUEDA PILLADO PERO EN PUNTOS RESTRINGIDOS;
+
 ----Mecanicas----
 Fichas:
 	-Multiples formas;
