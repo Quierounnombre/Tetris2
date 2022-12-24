@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 263114683}
   - component: {fileID: 263114684}
   m_Layer: 0
-  m_Name: Grid - P1
+  m_Name: Grid - 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,8 +408,11 @@ MonoBehaviour:
   timedelay: 0.5
   rot_delay: 0.1
   timelock: 0.05
-  Dir_src: Dir_P1
-  Rot_src: Rot_P1
+  Dir_src1: Dir_P1
+  Rot_src1: Rot_P1
+  Dir_src2: Dir_P2
+  Rot_src2: Rot_P2
+  is_P1: 1
   RotationIndex: 0
 --- !u!156049354 &263114684
 Grid:
@@ -792,7 +795,7 @@ GameObject:
   - component: {fileID: 709886460}
   - component: {fileID: 709886461}
   m_Layer: 0
-  m_Name: Grid - P2
+  m_Name: Grid - 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -906,8 +909,11 @@ MonoBehaviour:
   timedelay: 0.5
   rot_delay: 0.1
   timelock: 0.05
-  Dir_src: Dir_P2
-  Rot_src: Rot_P2
+  Dir_src1: Dir_P1
+  Rot_src1: Rot_P1
+  Dir_src2: Dir_P2
+  Rot_src2: Rot_P2
+  is_P1: 0
   RotationIndex: 0
 --- !u!156049354 &709886461
 Grid:
