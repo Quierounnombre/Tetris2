@@ -54,6 +54,7 @@ public class board : MonoBehaviour
 	{
 		Vector2Int tilepos;
 
+		clean_lines();
 		for (int i = 0; i < piece.cells.Length; i++)
 		{
 			tilepos = piece.cells[i] + spawn_point;
@@ -62,5 +63,47 @@ public class board : MonoBehaviour
 		}
 		player.pos = spawn_point;
 		Move_piece(piece);
-	}	
+	}
+
+	public void clean_lines()
+	{
+		Vector2Int	tilepos;
+		int			counter;
+
+		for (int i = 0; i < 20; i++)
+		{
+			counter = 0;
+			for (int j = 0; j < 10; j++)
+			{
+				tilepos = new Vector2Int(j, i);
+				if (tilemap.GetTile((Vector3Int)tilepos) != null)
+					counter++;
+			}
+			if (counter == 10)
+			{
+				for (int j = 0; j < 10; j++)
+				{
+					tilepos = new Vector2Int(j, i);
+					tilemap.SetTile((Vector3Int)tilepos, null);
+					pushdown(i);
+					i--;
+				}
+			}
+		}
+	}
+
+	private void pushdown(int start)
+	{
+		Vector2Int	tilepos;
+		Tile		tile;
+
+		for (int i = start; i < 20; i++)
+			for (int j = 0; j < 10; j++)
+			{
+				tilepos = new Vector2Int(j, i);
+				tile = (Tile)tilemap.GetTile((Vector3Int)tilepos);
+				tilepos = new Vector2Int(j, i - 1);
+				tilemap.SetTile((Vector3Int)tilepos, tile);
+			}
+	}
 }

@@ -14,17 +14,28 @@ public class PlayerControls : MonoBehaviour
 	private float		locktime;
 	private float		rot_locktime;
 	public float 		timelock;
-    public string		Dir_src;
-	public string		Rot_src;
+    public string		Dir_src1;
+	public string		Rot_src1;
+	public string		Dir_src2;
+	public string		Rot_src2;
+	public bool			is_P1;
 	public int			RotationIndex;
 
     void Update()
     {
-		if (Input.GetAxis(Dir_src) != 0 && Time.time >= locktime)
-			player_move();
-		else if (Input.GetAxis(Rot_src) != 0 && Time.time >= locktime && Time.time >= rot_locktime)
+		if (is_P1)
+			move_p1();
+		else
+			move_p2();
+    }
+
+	private void move_p1()
+	{
+		if (Input.GetAxis(Dir_src1) != 0 && Time.time >= locktime)
+			player_move(Input.GetAxis(Dir_src1));
+		else if (Input.GetAxis(Rot_src1) != 0 && Time.time >= locktime && Time.time >= rot_locktime)
 		{
-			if (Input.GetAxis(Rot_src) > 0)
+			if (Input.GetAxis(Rot_src1) > 0)
 				Rotate(1);
 			else
 				Rotate(-1);
@@ -38,24 +49,46 @@ public class PlayerControls : MonoBehaviour
 			else
 			{
 				board.Move_piece(piece);
+				is_P1 = false;
 				new_piece();
 			}
 		}
-    }
-
+	}
+	private void move_p2()
+	{
+		if (Input.GetAxis(Dir_src2) != 0 && Time.time >= locktime)
+			player_move(Input.GetAxis(Dir_src2));
+		else if (Input.GetAxis(Rot_src2) != 0 && Time.time >= locktime && Time.time >= rot_locktime)
+		{
+			if (Input.GetAxis(Rot_src2) > 0)
+				Rotate(1);
+			else
+				Rotate(-1);
+			rot_locktime = Time.time + rot_delay;
+		}
+		if (Time.time >= deltatime)
+		{
+			board.clean_piece(piece);
+			if (board.IsValid(new Vector2Int(0, -1), piece))
+				Drop();
+			else
+			{
+				board.Move_piece(piece);
+				is_P1 = true;
+				new_piece();
+			}
+		}
+	}
 	public void Awake()
 	{
 		new_piece();
 	}
-
 	public void new_piece()
 	{
 		piece = board.gen.generate();
 		deltatime = Time.time + timedelay;
 		board.spawn_piece(piece);
 	}
-
-
 	public void Drop()
 	{
 		deltatime = Time.time + timedelay;
@@ -63,14 +96,14 @@ public class PlayerControls : MonoBehaviour
 		board.Move_piece(piece);
     }
 
-	public void player_move()
+	public void player_move(float input)
 	{
 		int 		dir;
 		Vector2Int 	V;
 
 		dir = 1;
 		board.clean_piece(piece);
-		if (Input.GetAxis(Dir_src) < 0)
+		if (input < 0)
 			dir = -1;
 		V = new Vector2Int(dir, 0);
 		if (board.IsValid(V, piece))
@@ -79,7 +112,7 @@ public class PlayerControls : MonoBehaviour
 		locktime = Time.time + timelock;
 	}
 
-private void Rotate(int direction)
+	private void Rotate(int direction)
     {
         int originalRotation = RotationIndex;
 
