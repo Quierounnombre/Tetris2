@@ -7,8 +7,10 @@ using UnityEngine.UI;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
-    public static int Score = 0;
+    public static GameManager 	instance = null;
+    public static int			Score = 0;
+	public int					Win_score;
+    public Puntuacion			puntuacion;
 
     void Awake()
     {
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene(string sc)
     {
+		Score = 0;
         if (sc == "")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -70,5 +73,23 @@ public class GameManager : MonoBehaviour
                 j.gameObject.SetActive(true);
 			}
         }
+    }
+
+    public void score(bool player)
+    {
+        if (player)
+		{
+			puntuacion.move_score(1);
+            Score++;
+		}
+        else
+		{
+			Score--;
+			puntuacion.move_score(-1);
+		}
+        if (Score >= Win_score)
+            Time.timeScale = 0; // GAMEOVER
+        else if (Score <= -Win_score)
+            Time.timeScale = 0; // GAMEOVER
     }
 }
