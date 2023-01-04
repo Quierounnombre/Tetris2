@@ -85,25 +85,40 @@ public class board : MonoBehaviour
 				{
 					tilepos = new Vector2Int(j, i);
 					tilemap.SetTile((Vector3Int)tilepos, null);
-					pushdown(i);
-					i--;
 				}
 			}
 		}
+		pushdown();
 	}
 
-	private void pushdown(int start)
+	private void pushdown()
 	{
 		Vector2Int	tilepos;
 		Tile		tile;
+		int			counter;
 
-		for (int i = start; i < 20; i++)
+		for (int i = 0; i < 20; i++)
+		{
+			counter = 0;
 			for (int j = 0; j < 10; j++)
 			{
 				tilepos = new Vector2Int(j, i);
-				tile = (Tile)tilemap.GetTile((Vector3Int)tilepos);
-				tilepos = new Vector2Int(j, i - 1);
-				tilemap.SetTile((Vector3Int)tilepos, tile);
+				if (tilemap.GetTile((Vector3Int)tilepos) == null)
+					counter++;
 			}
+			if (counter == 10)
+			{
+				i++;
+				for (int j = 0; j < 10; j++)
+				{
+					tilepos = new Vector2Int(j, i);
+					tile = (Tile)tilemap.GetTile((Vector3Int)tilepos);
+					tilemap.SetTile((Vector3Int)tilepos, null);
+					tilepos = new Vector2Int(j, i - 1);
+					tilemap.SetTile((Vector3Int)tilepos, tile);
+				}
+				i--;
+			}
+		}
 	}
 }
