@@ -8,6 +8,7 @@ public class board : MonoBehaviour
 	public Tilemap tilemap;
 	public piece_generator gen;
 	private Tile tile;
+	public GameManager gm;
 	public PlayerControls player;
 	public Vector2Int spawn_point;
 
@@ -86,9 +87,11 @@ public class board : MonoBehaviour
 					tilepos = new Vector2Int(j, i);
 					tilemap.SetTile((Vector3Int)tilepos, null);
 				}
+				gm.score(player.is_P1);
 			}
 		}
-		pushdown();
+		for (int i = 0; i < 4; i++) //4 is the biggest piece posible, and so the amount of times we have to push down the pieces, bad code :/
+			pushdown();
 	}
 
 	private void pushdown()
