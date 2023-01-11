@@ -489,6 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1959293436}
   board: {fileID: 263114682}
+  other_player: {fileID: 709886460}
   piece:
     tile: {fileID: 0}
     shape: 0
@@ -501,10 +502,11 @@ MonoBehaviour:
   Dir_src1: Dir_P1
   Rot_src1: Rot_P1
   drop_src1: left shift
-  drop_src2: right shift
+  drop_src2: right ctrl
   Dir_src2: Dir_P2
   Rot_src2: Rot_P2
   is_P1: 1
+  can_P1_drop: 1
   RotationIndex: 0
 --- !u!156049354 &263114684
 Grid:
@@ -993,6 +995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1959293436}
   board: {fileID: 709886459}
+  other_player: {fileID: 263114683}
   piece:
     tile: {fileID: 0}
     shape: 0
@@ -1004,11 +1007,12 @@ MonoBehaviour:
   timelock: 0.05
   Dir_src1: Dir_P1
   Rot_src1: Rot_P1
-  drop_src1: left ctrl
+  drop_src1: left shift
   drop_src2: right ctrl
   Dir_src2: Dir_P2
   Rot_src2: Rot_P2
   is_P1: 0
+  can_P1_drop: 0
   RotationIndex: 0
 --- !u!156049354 &709886461
 Grid:

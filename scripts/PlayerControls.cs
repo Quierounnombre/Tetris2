@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    public GameManager 	GameManager;
-	public board		board;
-	public piece		piece;
-    public Vector2Int	pos;
-    public float        timedelay;
-	public float		rot_delay;
-    private float       deltatime;
-	private float		locktime;
-	private float		rot_locktime;
-	public float 		timelock;
-    public string		Dir_src1;
-	public string		Rot_src1;
-	public string		drop_src1;
-	public string		drop_src2;
-	public string		Dir_src2;
-	public string		Rot_src2;
-	public bool			is_P1;
-	public int			RotationIndex;
+    public GameManager 		GameManager;
+	public board			board;
+	public PlayerControls	other_player;
+	public piece			piece;
+    public Vector2Int		pos;
+    public float       		timedelay;
+	public float			rot_delay;
+    private float   	    deltatime;
+	private float			locktime;
+	private float			rot_locktime;
+	public float 			timelock;
+    public string			Dir_src1;
+	public string			Rot_src1;
+	public string			drop_src1;
+	public string			drop_src2;
+	public string			Dir_src2;
+	public string			Rot_src2;
+	public bool				is_P1;
+	public bool				can_P1_drop;
+	public int				RotationIndex;
 
     void Update()
     {
@@ -33,7 +35,7 @@ public class PlayerControls : MonoBehaviour
 
 	private void move_p1()
 	{
-		if (Input.GetKeyDown(drop_src1))
+		if (Input.GetKeyDown(drop_src1) && can_P1_drop)
 			Hard_drop();
 		else if (Input.GetAxis(Dir_src1) != 0 && Time.time >= locktime)
 			player_move(Input.GetAxis(Dir_src1));
@@ -60,7 +62,7 @@ public class PlayerControls : MonoBehaviour
 	}
 	private void move_p2()
 	{
-		if (Input.GetKeyDown(drop_src2))
+		if (Input.GetKeyDown(drop_src2) && !can_P1_drop)
 			Hard_drop();
 		else if (Input.GetAxis(Dir_src2) != 0 && Time.time >= locktime)
 			player_move(Input.GetAxis(Dir_src2));
@@ -91,6 +93,7 @@ public class PlayerControls : MonoBehaviour
 	}
 	public void new_piece()
 	{
+		Check_hard_drop();
 		piece = board.gen.generate();
 		deltatime = Time.time + timedelay;
 		board.spawn_piece(piece);
@@ -214,4 +217,30 @@ public class PlayerControls : MonoBehaviour
             return min + (input - min) % (max - min);
         }
     }
+
+	private void	Check_hard_drop()
+	{
+		if (other_player.is_P1 == is_P1)
+		{
+			if (is_P1)
+			{
+				can_P1_drop = false;
+			}
+			else
+			{
+				can_P1_drop = true;
+			}
+		}
+		else
+		{
+			if (is_P1)
+				can_P1_drop = true;
+			else
+				can_P1_drop = false;
+			if (other_player.is_P1)
+				other_player.can_P1_drop = true;			
+			else
+				other_player.can_P1_drop = false;
+		}
+	}
 }
