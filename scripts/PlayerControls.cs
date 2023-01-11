@@ -16,6 +16,8 @@ public class PlayerControls : MonoBehaviour
 	public float 		timelock;
     public string		Dir_src1;
 	public string		Rot_src1;
+	public string		drop_src1;
+	public string		drop_src2;
 	public string		Dir_src2;
 	public string		Rot_src2;
 	public bool			is_P1;
@@ -31,7 +33,9 @@ public class PlayerControls : MonoBehaviour
 
 	private void move_p1()
 	{
-		if (Input.GetAxis(Dir_src1) != 0 && Time.time >= locktime)
+		if (Input.GetKeyDown(drop_src1))
+			Hard_drop();
+		else if (Input.GetAxis(Dir_src1) != 0 && Time.time >= locktime)
 			player_move(Input.GetAxis(Dir_src1));
 		else if (Input.GetAxis(Rot_src1) != 0 && Time.time >= locktime && Time.time >= rot_locktime)
 		{
@@ -56,7 +60,9 @@ public class PlayerControls : MonoBehaviour
 	}
 	private void move_p2()
 	{
-		if (Input.GetAxis(Dir_src2) != 0 && Time.time >= locktime)
+		if (Input.GetKeyDown(drop_src2))
+			Hard_drop();
+		else if (Input.GetAxis(Dir_src2) != 0 && Time.time >= locktime)
 			player_move(Input.GetAxis(Dir_src2));
 		else if (Input.GetAxis(Rot_src2) != 0 && Time.time >= locktime && Time.time >= rot_locktime)
 		{
@@ -95,6 +101,25 @@ public class PlayerControls : MonoBehaviour
 		pos += new Vector2Int(0, -1);
 		board.Move_piece(piece);
     }
+
+	public void Hard_drop()
+	{
+		while (true)
+		{
+			board.clean_piece(piece);
+			if (board.IsValid(new Vector2Int(0, -1), piece))
+			{
+				pos += new Vector2Int(0, -1);
+				board.Move_piece(piece);
+			}
+			else
+				break;
+		}
+		board.Move_piece(piece);
+		is_P1 = !is_P1;
+		new_piece();
+		deltatime = Time.time + timedelay;
+	}
 
 	public void player_move(float input)
 	{

@@ -500,6 +500,8 @@ MonoBehaviour:
   timelock: 0.05
   Dir_src1: Dir_P1
   Rot_src1: Rot_P1
+  drop_src1: left shift
+  drop_src2: right shift
   Dir_src2: Dir_P2
   Rot_src2: Rot_P2
   is_P1: 1
@@ -1002,6 +1004,8 @@ MonoBehaviour:
   timelock: 0.05
   Dir_src1: Dir_P1
   Rot_src1: Rot_P1
+  drop_src1: left ctrl
+  drop_src2: right ctrl
   Dir_src2: Dir_P2
   Rot_src2: Rot_P2
   is_P1: 0
@@ -1043,11 +1047,10 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812115754}
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: -1483.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 300, y: 300, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 813427112}
+  m_Children: []
   m_Father: {fileID: 1031891739}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
@@ -1138,12 +1141,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 812115755}
-  m_RootOrder: 0
+  m_Father: {fileID: 1031891739}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 160}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813427113
@@ -1166,7 +1169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1200,7 +1203,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1395,6 +1398,7 @@ RectTransform:
   - {fileID: 225437947}
   - {fileID: 2118312745}
   - {fileID: 812115755}
+  - {fileID: 813427112}
   m_Father: {fileID: 2043442728}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1415,7 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996127c729661fa44b99c4fb4625fa5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txt: {fileID: 0}
+  txt: {fileID: 813427113}
 --- !u!1 &1959293435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1544,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!224 &2043442728
 RectTransform:
