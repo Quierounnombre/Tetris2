@@ -12,18 +12,6 @@ public class board : MonoBehaviour
 	public PlayerControls player;
 	public Vector2Int spawn_point;
 
-	private void debug_keys()
-	{
-		if (Input.GetKeyDown(KeyCode.T))
-			gm.score(true);
-		else if (Input.GetKeyDown(KeyCode.Y))
-			gm.score(false);
-	}
-	
-	private void Update()
-	{
-		debug_keys();
-	}
     public void Move_piece(piece piece)
     {
 		Vector2Int tilepos;

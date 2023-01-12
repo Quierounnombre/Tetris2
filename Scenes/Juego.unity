@@ -497,14 +497,17 @@ MonoBehaviour:
     RotationMatrix: []
   pos: {x: 0, y: 0}
   timedelay: 0.5
-  rot_delay: 0.1
   timelock: 0.05
-  Dir_src1: Dir_P1
-  Rot_src1: Rot_P1
+  Dir_pos_src1: d
+  Dir_neg_src1: a
+  Rot_pos_src1: w
+  Rot_neg_src1: s
   drop_src1: left shift
+  Dir_pos_src2: right
+  Dir_neg_src2: left
+  Rot_pos_src2: down
+  Rot_neg_src2: up
   drop_src2: right ctrl
-  Dir_src2: Dir_P2
-  Rot_src2: Rot_P2
   is_P1: 1
   can_P1_drop: 1
   RotationIndex: 0
@@ -1087,14 +1090,17 @@ MonoBehaviour:
     RotationMatrix: []
   pos: {x: 0, y: 0}
   timedelay: 0.5
-  rot_delay: 0.1
   timelock: 0.05
-  Dir_src1: Dir_P1
-  Rot_src1: Rot_P1
+  Dir_pos_src1: d
+  Dir_neg_src1: a
+  Rot_pos_src1: w
+  Rot_neg_src1: s
   drop_src1: left shift
+  Dir_pos_src2: right
+  Dir_neg_src2: left
+  Rot_pos_src2: down
+  Rot_neg_src2: up
   drop_src2: right ctrl
-  Dir_src2: Dir_P2
-  Rot_src2: Rot_P2
   is_P1: 0
   can_P1_drop: 0
   RotationIndex: 0

@@ -92,4 +92,15 @@ public class GameManager : MonoBehaviour
         else if (Score <= -Win_score)
             Time.timeScale = 0; // GAMEOVER
     }
+
+    private void LateUpdate() {
+        debug_keys();
+    }
+    private void debug_keys()
+	{
+		if (Input.GetKeyDown(KeyCode.T))
+			score(true);
+		else if (Input.GetKeyDown(KeyCode.Y))
+			score(false);
+	}
 }

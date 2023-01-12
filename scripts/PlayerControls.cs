@@ -10,22 +10,26 @@ public class PlayerControls : MonoBehaviour
 	public piece			piece;
     public Vector2Int		pos;
     public float       		timedelay;
-	public float			rot_delay;
     private float   	    deltatime;
 	private float			locktime;
-	private float			rot_locktime;
 	public float 			timelock;
-    public string			Dir_src1;
-	public string			Rot_src1;
+	[Header("Jugador 1 controles")]
+    public string			Dir_pos_src1;
+	public string			Dir_neg_src1;
+	public string			Rot_pos_src1;
+	public string			Rot_neg_src1;
 	public string			drop_src1;
+	[Header ("Jugador 2 controles")]
+	public string			Dir_pos_src2;
+	public string			Dir_neg_src2;
+	public string			Rot_pos_src2;
+	public string			Rot_neg_src2;
 	public string			drop_src2;
-	public string			Dir_src2;
-	public string			Rot_src2;
 	public bool				is_P1;
 	public bool				can_P1_drop;
 	public int				RotationIndex;
 
-    void Update()
+    void FixedUpdate()
     {
 		if (is_P1)
 			move_p1();
@@ -35,17 +39,18 @@ public class PlayerControls : MonoBehaviour
 
 	private void move_p1()
 	{
-		if (Input.GetKeyDown(drop_src1) && can_P1_drop)
-			Hard_drop();
-		else if (Input.GetAxis(Dir_src1) != 0 && Time.time >= locktime)
-			player_move(Input.GetAxis(Dir_src1));
-		else if (Input.GetAxis(Rot_src1) != 0 && Time.time >= locktime && Time.time >= rot_locktime)
+		if (Time.time >= locktime)
 		{
-			if (Input.GetAxis(Rot_src1) > 0)
+			if (Input.GetKeyDown(drop_src1) && can_P1_drop)
+				Hard_drop();
+			else if (Input.GetKeyDown(Dir_pos_src1) )
+				player_move(1);
+			else if (Input.GetKeyDown(Dir_neg_src1))
+				player_move(-1);
+			else if (Input.GetKeyDown(Rot_pos_src1))
 				Rotate(1);
-			else
+			else if (Input.GetKeyDown(Rot_neg_src1))
 				Rotate(-1);
-			rot_locktime = Time.time + rot_delay;
 		}
 		if (Time.time >= deltatime)
 		{
@@ -62,17 +67,18 @@ public class PlayerControls : MonoBehaviour
 	}
 	private void move_p2()
 	{
-		if (Input.GetKeyDown(drop_src2) && !can_P1_drop)
-			Hard_drop();
-		else if (Input.GetAxis(Dir_src2) != 0 && Time.time >= locktime)
-			player_move(Input.GetAxis(Dir_src2));
-		else if (Input.GetAxis(Rot_src2) != 0 && Time.time >= locktime && Time.time >= rot_locktime)
+		if (Time.time >= locktime)
 		{
-			if (Input.GetAxis(Rot_src2) > 0)
+			if (Input.GetKeyDown(drop_src2) && !can_P1_drop)
+				Hard_drop();
+			else if (Input.GetKeyDown(Dir_pos_src2) )
+				player_move(1);
+			else if (Input.GetKeyDown(Dir_neg_src2))
+				player_move(-1);
+			else if (Input.GetKeyDown(Rot_pos_src2))
 				Rotate(1);
-			else
+			else if (Input.GetKeyDown(Rot_neg_src2))
 				Rotate(-1);
-			rot_locktime = Time.time + rot_delay;
 		}
 		if (Time.time >= deltatime)
 		{
@@ -124,15 +130,11 @@ public class PlayerControls : MonoBehaviour
 		deltatime = Time.time + timedelay;
 	}
 
-	public void player_move(float input)
+	public void player_move(int dir)
 	{
-		int 		dir;
 		Vector2Int 	V;
 
-		dir = 1;
 		board.clean_piece(piece);
-		if (input < 0)
-			dir = -1;
 		V = new Vector2Int(dir, 0);
 		if (board.IsValid(V, piece))
 			pos += V;
