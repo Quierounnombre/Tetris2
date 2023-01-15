@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+	[Header ("Estado del tablero")]
+	public bool				is_P1;
+	public bool				can_P1_drop;
+	public int				RotationIndex;
     public GameManager 		GameManager;
 	public board			board;
 	public PlayerControls	other_player;
@@ -13,23 +17,22 @@ public class PlayerControls : MonoBehaviour
     private float   	    deltatime;
 	private float			locktime;
 	public float 			timelock;
+	[Space(10)]
 	[Header("Jugador 1 controles")]
     public string			Dir_pos_src1;
 	public string			Dir_neg_src1;
 	public string			Rot_pos_src1;
 	public string			Rot_neg_src1;
 	public string			drop_src1;
+	[Space(10)]
 	[Header ("Jugador 2 controles")]
 	public string			Dir_pos_src2;
 	public string			Dir_neg_src2;
 	public string			Rot_pos_src2;
 	public string			Rot_neg_src2;
 	public string			drop_src2;
-	public bool				is_P1;
-	public bool				can_P1_drop;
-	public int				RotationIndex;
 
-    void FixedUpdate()
+    void LateUpdate()
     {
 		if (is_P1)
 			move_p1();
