@@ -10,6 +10,9 @@ Fuente propia;
 
 A TOMAR POR CULO TODO, TE Intercambias CON EL OTRO JUGADOR LOS CAMPOS, GANA EL QUE LOGRE HACER PERDER AL OTRO O GANE X cantidad de puntos
 
+Ideas
+	Que el jugador con más puntos disponga de más tiempo?
+
 ----Mecanicas----
 Fichas: OK
 	-Multiples formas;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
 	[Header ("Estado del tablero")]
+	public Background_color	bg_color;
 	public bool				is_P1;
 	public bool				can_P1_drop;
 	public int				RotationIndex;
@@ -102,6 +103,7 @@ public class PlayerControls : MonoBehaviour
 	}
 	public void new_piece()
 	{
+		bg_color.color_swap(is_P1);
 		Check_hard_drop();
 		piece = board.gen.generate();
 		deltatime = Time.time + timedelay;

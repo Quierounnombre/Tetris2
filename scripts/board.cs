@@ -11,7 +11,6 @@ public class board : MonoBehaviour
 	public GameManager gm;
 	public PlayerControls player;
 	public Vector2Int spawn_point;
-
     public void Move_piece(piece piece)
     {
 		Vector2Int tilepos;
