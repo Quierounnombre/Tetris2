@@ -606,6 +606,7 @@ MonoBehaviour:
     RotationMatrix: []
   pos: {x: 0, y: 0}
   timedelay: 0.5
+  time_reduction: 0.05
   timelock: 0.05
   Dir_pos_src1: d
   Dir_neg_src1: a
@@ -747,7 +748,7 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
   m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
+  m_InputActionsPerSecond: 20
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
 --- !u!114 &410424124
@@ -1200,6 +1201,7 @@ MonoBehaviour:
     RotationMatrix: []
   pos: {x: 0, y: 0}
   timedelay: 0.5
+  time_reduction: 0.05
   timelock: 0.05
   Dir_pos_src1: d
   Dir_neg_src1: a
@@ -1726,6 +1728,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 1244202012}
   delta_time: 0
+  countdown_limiter: 5
+  P1: {fileID: 263114683}
+  P2: {fileID: 709886460}
 --- !u!1 &1216043762
 GameObject:
   m_ObjectHideFlags: 0

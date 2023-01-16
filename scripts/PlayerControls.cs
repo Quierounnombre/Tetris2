@@ -16,6 +16,7 @@ public class PlayerControls : MonoBehaviour
     public Vector2Int		pos;
     public float       		timedelay;
     private float   	    deltatime;
+	public float				time_reduction;
 	private float			locktime;
 	public float 			timelock;
 	[Space(10)]
@@ -132,7 +133,6 @@ public class PlayerControls : MonoBehaviour
 		board.Move_piece(piece);
 		is_P1 = !is_P1;
 		new_piece();
-		deltatime = Time.time + timedelay;
 	}
 
 	public void player_move(int dir)

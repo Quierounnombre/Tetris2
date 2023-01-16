@@ -7,7 +7,11 @@ public class UI_clock : MonoBehaviour
 {
 	public TextMeshProUGUI 	txt;
 	public float			delta_time;
+	private float			countdown_time;
+	public	int				countdown_limiter;
 	private float			start_time;
+	public PlayerControls	P1;
+	public PlayerControls	P2;
 
 	private void Start()
 	{
@@ -18,7 +22,14 @@ public class UI_clock : MonoBehaviour
 		if (Time.time > (delta_time + start_time))
 		{
 			delta_time += 1;
+			countdown_time += 1;
 			txt.text = format_time();
+			if (countdown_time > countdown_limiter && P1.timedelay > 0.25f)
+			{
+				countdown_time = 0;
+				P1.timedelay -= P1.time_reduction;
+				P2.timedelay -= P2.time_reduction;
+			}
 		}
 	}
 
