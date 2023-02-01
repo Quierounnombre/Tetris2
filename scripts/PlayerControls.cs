@@ -16,7 +16,7 @@ public class PlayerControls : MonoBehaviour
     public Vector2Int		pos;
     public float       		timedelay;
     private float   	    deltatime;
-	public float				time_reduction;
+	public float			time_reduction;
 	private float			locktime;
 	public float 			timelock;
 	[Space(10)]
@@ -131,7 +131,6 @@ public class PlayerControls : MonoBehaviour
 				break;
 		}
 		board.Move_piece(piece);
-		is_P1 = !is_P1;
 		new_piece();
 	}
 
@@ -227,27 +226,14 @@ public class PlayerControls : MonoBehaviour
 
 	private void	Check_hard_drop()
 	{
-		if (other_player.is_P1 == is_P1)
-		{
-			if (is_P1)
-			{
-				can_P1_drop = false;
-			}
-			else
-			{
-				can_P1_drop = true;
-			}
-		}
+		if (is_P1)
+			can_P1_drop = true;
 		else
-		{
-			if (is_P1)
-				can_P1_drop = true;
-			else
-				can_P1_drop = false;
-			if (other_player.is_P1)
-				other_player.can_P1_drop = true;			
-			else
-				other_player.can_P1_drop = false;
-		}
+			can_P1_drop = false;
+		if (other_player.is_P1)
+			other_player.can_P1_drop = true;			
+		else
+			other_player.can_P1_drop = false;
+		is_P1 = !is_P1;
 	}
 }
