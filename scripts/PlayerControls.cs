@@ -48,7 +48,7 @@ public class PlayerControls : MonoBehaviour
 		{
 			if (Input.GetKeyDown(drop_src1) && can_P1_drop)
 				Hard_drop();
-			else if (Input.GetKeyDown(Dir_pos_src1) )
+			else if (Input.GetKeyDown(Dir_pos_src1))
 				player_move(1);
 			else if (Input.GetKeyDown(Dir_neg_src1))
 				player_move(-1);
@@ -98,10 +98,12 @@ public class PlayerControls : MonoBehaviour
 			}
 		}
 	}
+
 	public void Awake()
 	{
 		new_piece();
 	}
+
 	public void new_piece()
 	{
 		bg_color.color_swap(is_P1);
@@ -110,6 +112,7 @@ public class PlayerControls : MonoBehaviour
 		deltatime = Time.time + timedelay;
 		board.spawn_piece(piece);
 	}
+
 	public void Drop()
 	{
 		deltatime = Time.time + timedelay;

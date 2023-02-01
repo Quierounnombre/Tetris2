@@ -59,7 +59,7 @@ public class board : MonoBehaviour
 		{
 			tilepos = piece.cells[i] + spawn_point;
 			if (tilemap.GetTile((Vector3Int)tilepos) != null)
-				Time.timeScale=0; // GAMEOVER IN FUTURE
+				gm.gameover();
 		}
 		player.pos = spawn_point;
 		Move_piece(piece);

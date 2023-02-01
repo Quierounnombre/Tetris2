@@ -39,40 +39,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void resume(){
-        Time.timeScale=1;
-        TextMeshProUGUI[] texts=Resources.FindObjectsOfTypeAll<TextMeshProUGUI>();
-        Button[] buttons=Resources.FindObjectsOfTypeAll<Button>();
-        foreach(var i in texts){
-            if(i.gameObject.CompareTag("PauseMenu"))
-                i.gameObject.SetActive(false);
-        }
-
-        foreach(var j in buttons){
-            if(j.gameObject.CompareTag("PauseMenu"))
-                j.gameObject.SetActive(false);
-        }
+    public void resume()
+    {
+        Time.timeScale = 1;
     }
 
-    public void pause(){
-        Time.timeScale=0;
+    public void pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void gameover()
+    {
+        Time.timeScale = 0;
         TextMeshProUGUI[] texts=Resources.FindObjectsOfTypeAll<TextMeshProUGUI>();
         Button[] buttons=Resources.FindObjectsOfTypeAll<Button>();
         foreach(var i in texts)
         {
-            if(i.gameObject.CompareTag("PauseMenu"))
+            if(i.gameObject.CompareTag("GameOverMenu"))
             {
                 i.gameObject.SetActive(true);
             }
         }
-
         foreach(var j in buttons)
         {
-            if(j.gameObject.CompareTag("PauseMenu"))
+            if(j.gameObject.CompareTag("GameOverMenu"))
 			{
                 j.gameObject.SetActive(true);
 			}
         }
+    }
+
+    public void restart_game()
+    {
+        Score = 0;
+        ChangeScene("");
     }
 
     public void score(bool player)
