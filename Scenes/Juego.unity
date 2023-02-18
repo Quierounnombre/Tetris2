@@ -698,7 +698,7 @@ MonoBehaviour:
   pos: {x: 0, y: 0}
   timedelay: 0.5
   time_reduction: 0.05
-  timelock: 0.05
+  timelock: 0.005
   Dir_pos_src1: d
   Dir_neg_src1: a
   Rot_pos_src1: w
@@ -1675,7 +1675,7 @@ MonoBehaviour:
   pos: {x: 0, y: 0}
   timedelay: 0.5
   time_reduction: 0.05
-  timelock: 0.05
+  timelock: 0.005
   Dir_pos_src1: d
   Dir_neg_src1: a
   Rot_pos_src1: w
